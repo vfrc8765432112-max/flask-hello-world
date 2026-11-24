@@ -3,7 +3,7 @@ import json
 import os
 import ssl
 import uuid
-from urllib.error import URLError
+from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
@@ -77,7 +77,7 @@ def chat():
             reply = json.load(response)["choices"][0]["message"]["content"]
 
     except (URLError, OSError, ValueError, KeyError, IndexError, TypeError) as exc:
-        app.logger.warning("GigaChat request failed (%s)", type(exc).__name__)
+        app.logger.warning("GigaChat request failed (%s)", str(exc))
         return jsonify(error="GigaChat request failed"), 502
 
     return jsonify(reply=reply)
