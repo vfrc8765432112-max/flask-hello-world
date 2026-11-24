@@ -55,7 +55,7 @@ def chat():
             access_token = json.load(response)["access_token"]
 
         prompt = {
-            "model": "GigaChat",
+            "model": "GigaChat-3-Ultra",
             "messages": [
                 {
                     "role": "system",
